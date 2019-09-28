@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.pongo.autowish.user.User;
@@ -32,7 +33,10 @@ public class Car implements Serializable{
 	private long carId;
 	
 	private String carColor;
+	
+	@Column(unique = true)
 	private String carNumber;
+	
 	private String carCompanyName;
 	private String carModelName;
 	
@@ -44,7 +48,7 @@ public class Car implements Serializable{
 	@Column(length = 10)
 	private Transmission transmission;
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
     private User user;
