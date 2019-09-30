@@ -2,7 +2,7 @@ package com.pongo.autowish.document;
 
 public class DocumentDto {
 
-	private DocumentType documentType;
+	private String documentType;
 	
 	private String documentName;
 
@@ -12,11 +12,11 @@ public class DocumentDto {
 	
 	private String userId;
 
-	public DocumentType getDocumentType() {
+	public String getDocumentType() {
 		return documentType;
 	}
 
-	public void setDocumentType(DocumentType documentType) {
+	public void setDocumentType(String documentType) {
 		this.documentType = documentType;
 	}
 

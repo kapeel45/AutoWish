@@ -1,5 +1,7 @@
 package com.pongo.autowish.document;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +31,12 @@ public class Document {
 	@Column(length = 20)
 	private String documentBackImage;
 	
-	private char isVerified;
+	@Column(nullable = false)
+	private char isVerified = 'N';
+
+	private Date validFrom;
+	
+	private Date validTo;
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -90,6 +97,22 @@ public class Document {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Date getValidFrom() {
+		return validFrom;
+	}
+
+	public void setValidFrom(Date validFrom) {
+		this.validFrom = validFrom;
+	}
+
+	public Date getValidTo() {
+		return validTo;
+	}
+
+	public void setValidTo(Date validTo) {
+		this.validTo = validTo;
 	}
 	
 }

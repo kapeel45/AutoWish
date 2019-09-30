@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pongo.autowish.auto.car.Car;
-import com.pongo.autowish.auto.car.CarDto;
-import com.pongo.autowish.auto.car.CarService;
-
 @RestController
 @RequestMapping("/document")
 public class DocumentController {

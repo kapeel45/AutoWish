@@ -46,9 +46,11 @@ public class User implements Serializable{
 	
 	private Double longitude;
 	
-	private char isEmailVerified;
-	
-	private char isMobileVerified;
+	@Column(nullable = false)
+	private char isEmailVerified = 'N';
+
+	@Column(nullable = false)
+	private char isMobileVerified = 'N';
 	
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
     private Set<Address> address;

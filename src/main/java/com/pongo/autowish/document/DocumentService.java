@@ -8,16 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pongo.autowish.auto.car.Car;
-import com.pongo.autowish.auto.car.CarDto;
-import com.pongo.autowish.auto.car.CarRepository;
-import com.pongo.autowish.auto.car.FuelType;
-import com.pongo.autowish.auto.car.Transmission;
 import com.pongo.autowish.user.User;
 import com.pongo.autowish.user.UserRepository;
 
 @Service
 public class DocumentService {
+	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
@@ -37,7 +33,8 @@ public class DocumentService {
 				Document doc = new Document();
 				doc.setDocumentBackImage(docDto.getDocumentBackImage());
 				doc.setDocumentFrontImage(docDto.getDocumentFrontImage());
-				doc.setDocumentName(doc.getDocumentName());
+				doc.setDocumentName(docDto.getDocumentName());
+				doc.setDocumentType(DocumentType.valueOf((docDto.getDocumentType())));
 				
 				doc.setUser(user.get());
 				
@@ -77,11 +74,11 @@ public class DocumentService {
 			List<Document> lstDoc = docRepo.findAll();
 			
 			if(!lstDoc.isEmpty()) {
-				log.info("All Document found");
+				log.info("All document found");
 				return lstDoc;
 			}
 		}catch(Exception e) {
-			log.error(e.getMessage());
+			log.error("Exception:: "+e.getMessage());
 			e.printStackTrace();
 		}
 		
