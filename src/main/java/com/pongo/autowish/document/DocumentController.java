@@ -2,6 +2,8 @@ package com.pongo.autowish.document;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/document")
 public class DocumentController {
 
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	DocumentService docService;
 	
 	@PostMapping("/add")
-	public @ResponseBody ResponseEntity<Document> addCar(@RequestBody DocumentDto docDto) {
+	public @ResponseBody ResponseEntity<Document> addDocument(@RequestBody DocumentDto docDto) {
 		Document doc = docService.addDocument(docDto);
 		if(doc != null) {
 			return new ResponseEntity<Document>(doc, HttpStatus.CREATED);
@@ -42,7 +46,7 @@ public class DocumentController {
 	}
 	
 	@GetMapping("/")
-	public @ResponseBody ResponseEntity<List<Document>> getAllCar() {
+	public @ResponseBody ResponseEntity<List<Document>> getAllDocument() {
 		
 		List<Document> lstDoc = docService.getAllDocuments();
 		
