@@ -1,0 +1,60 @@
+package com.pongo.autowish.document;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pongo.autowish.auto.car.Car;
+import com.pongo.autowish.auto.car.CarDto;
+import com.pongo.autowish.auto.car.CarService;
+
+@RestController
+@RequestMapping("/document")
+public class DocumentController {
+
+	@Autowired
+	DocumentService docService;
+	
+	@PostMapping("/add")
+	public @ResponseBody ResponseEntity<Document> addCar(@RequestBody DocumentDto docDto) {
+		Document doc = docService.addDocument(docDto);
+		if(doc != null) {
+			return new ResponseEntity<Document>(doc, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<Document>(HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping("/{id}")
+	public @ResponseBody ResponseEntity<Document> getDocument(@PathVariable String id) {
+		
+		Document doc = docService.getDocument(id);
+		
+		if(doc == null) {
+			return new ResponseEntity<Document>(HttpStatus.NO_CONTENT);	
+		}
+		
+		return new ResponseEntity<Document>(doc,HttpStatus.OK);
+	}
+	
+	@GetMapping("/")
+	public @ResponseBody ResponseEntity<List<Document>> getAllCar() {
+		
+		List<Document> lstDoc = docService.getAllDocuments();
+		
+		if(lstDoc == null) {
+			return new ResponseEntity<List<Document>>(HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<List<Document>>(lstDoc,HttpStatus.OK);
+	}
+
+}

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.pongo.autowish.address.Address;
 import com.pongo.autowish.auto.bike.Bike;
 import com.pongo.autowish.auto.car.Car;
+import com.pongo.autowish.document.Document;
 
 @Entity
 @JsonInclude(Include.NON_EMPTY)
@@ -45,6 +46,10 @@ public class User implements Serializable{
 	
 	private Double longitude;
 	
+	private char isEmailVerified;
+	
+	private char isMobileVerified;
+	
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
     private Set<Address> address;
 	
@@ -53,6 +58,9 @@ public class User implements Serializable{
 	
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
     private Set<Car> car;
+	
+	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
+    private Set<Document> doc;
 
 	public long getUserId() {
 		return userId;
@@ -117,6 +125,22 @@ public class User implements Serializable{
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
+	
+	public char getIsEmailVerified() {
+		return isEmailVerified;
+	}
+
+	public void setIsEmailVerified(char isEmailVerified) {
+		this.isEmailVerified = isEmailVerified;
+	}
+
+	public char getIsMobileVerified() {
+		return isMobileVerified;
+	}
+
+	public void setIsMobileVerified(char isMobileVerified) {
+		this.isMobileVerified = isMobileVerified;
+	}
 
 	@Override
 	public String toString() {
@@ -124,6 +148,5 @@ public class User implements Serializable{
 				+ ", mobile=" + mobile + ", currentArea=" + currentArea + ", lattitude=" + lattitude + ", longitude="
 				+ longitude + ", address=" + address + ", bike=" + bike + ", car=" + car + "]";
 	}
-
 	
 }

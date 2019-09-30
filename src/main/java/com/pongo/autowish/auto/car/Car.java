@@ -48,6 +48,9 @@ public class Car implements Serializable{
 	@Column(length = 10)
 	private Transmission transmission;
 	
+	@Column(length =10)
+	private String makeYear;
+	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
