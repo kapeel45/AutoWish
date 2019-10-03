@@ -5,6 +5,8 @@ public class VerifyDto {
 	private String mobileNumber;
 	
 	private String otp;
+	
+	private String emailId;
 
 	public String getMobileNumber() {
 		return mobileNumber;
@@ -21,5 +23,15 @@ public class VerifyDto {
 	public void setOtp(String otp) {
 		this.otp = otp;
 	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	
+	
 	
 }

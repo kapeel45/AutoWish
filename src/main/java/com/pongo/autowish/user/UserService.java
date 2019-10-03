@@ -84,9 +84,23 @@ public class UserService {
 		return null;
 	}
 
-	public boolean verifyMobile(String otp) {
+
+	public User findByEmail(String emailId) {
 		
-		otpRepo.findByOtp(otp);
-		return false;
+		Optional<User> user = userRepo.findByEmail(emailId);
+		
+		try{
+			if(user.isPresent()) {
+				return user.get();
+			}else {
+				log.error("User with mobile number:: "+emailId+ " not found");
+			}
+		}catch(Exception e) {
+			log.error("Exception:: "+e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
+	
 }

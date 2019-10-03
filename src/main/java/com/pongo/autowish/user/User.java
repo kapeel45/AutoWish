@@ -18,6 +18,7 @@ import com.pongo.autowish.address.Address;
 import com.pongo.autowish.auto.bike.Bike;
 import com.pongo.autowish.auto.car.Car;
 import com.pongo.autowish.document.Document;
+import com.pongo.autowish.otp.Otp;
 
 @Entity
 @JsonInclude(Include.NON_EMPTY)
@@ -63,6 +64,9 @@ public class User implements Serializable{
 	
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
     private Set<Document> doc;
+	
+	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
+    private Set<Otp> otp;
 
 	public long getUserId() {
 		return userId;

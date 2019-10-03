@@ -73,23 +73,4 @@ public class UserController {
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
-	@PostMapping("/verify/{mobileNumber}/{otp}")
-	public @ResponseBody ResponseEntity<Boolean> verifyMobile(@RequestBody VerifyDto verifyDto){
-		
-		User user = userService.findByMobile(verifyDto.getMobileNumber());
-		boolean result = false;
-		
-		if(user == null) {
-			log.error("No User found");
-			return new ResponseEntity<Boolean>(HttpStatus.NO_CONTENT);
-		}else {
-			result = userService.verifyMobile(verifyDto.getOtp());
-			
-			if(result) {
-				return new ResponseEntity<Boolean>(true,HttpStatus.OK);
-			}
-		}
-		
-		return new ResponseEntity<Boolean>(false,HttpStatus.BAD_REQUEST);
-	}
 }
